@@ -5,12 +5,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Random;
 
 public class Member {
-    String name;
-    int go;
+    private String name;
+    private int go;
 
     public Member(String name, int go) {
+        validateName(name);
         this.name = name;
-        this.go = go;
+        this.go = 0;
     }
 
     public String getName() {
@@ -20,24 +21,17 @@ public class Member {
     public int getGo() {
         return go;
     }
-
-    // 랜덤으로 오르거나 안 오르거나
+    //랜덤 뽑기
     public void startRandom() {
-        int value = Randoms.pickNumberInRange(0, 9);
-        if (value >= 4) {
+        int randomValue = Randoms.pickNumberInRange(0, 9);
+        if (randomValue >= 4) {  // 4 이상이면 전진
             go++;
         }
     }
-
+    //예외처리
     private void validateName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("자동차 이름은 비어 있을 수 없습니다.");
-        }
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+        if (name == null || name.isBlank() || name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 1~5자 사이여야 합니다.");
         }
     }
-
-
-
 }
