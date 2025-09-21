@@ -15,7 +15,7 @@ public class Application {
             List<Member> members = new ArrayList<>();
             for (String s : membersList) {
                 if(s.length()>5){
-                    throw new IllegalArgumentException("글자수 5자 이하만");
+                    throw new IllegalArgumentException("글자수 5자 이하");
                 }
                 members.add(new Member(s.trim(), 0));
 
